@@ -1,3 +1,8 @@
+# Aliases
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
 # Goto
 [[ -s "/usr/local/share/goto.sh" ]] && source /usr/local/share/goto.sh
 
@@ -18,41 +23,11 @@ fix_wsl2_interop() {
     done
 }
 
-# Kubectl Functions
-# ---
-#
-alias k="kubectl"
-alias h="helm"
-
-kn() {
-    if [ "$1" != "" ]; then
-	    kubectl config set-context --current --namespace=$1
-    else
-	    echo -e "\e[1;31m Error, please provide a valid Namespace\e[0m"
-    fi
-}
-
-knd() {
-    kubectl config set-context --current --namespace=default
-}
-
-ku() {
-    kubectl config unset current-context
-}
 
 # Colormap
 function colormap() {
   for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 }
-
-# ALIAS COMMANDS
-alias ls="exa --icons --group-directories-first"
-alias ll="exa --icons --group-directories-first -l"
-alias g="goto"
-alias grep='grep --color'
-
-alias cbp="code /home/xcad/obsidianvault/boilerplates"
-alias cpr="code /home/xcad/obsidianvault/projects"
 
 # find out which distribution we are running on
 LFILE="/etc/*-release"
