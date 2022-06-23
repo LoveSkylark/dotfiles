@@ -24,6 +24,17 @@ ku() {
     kubectl config unset current-context
 }
 
+kall() {
+    kubectl get all --all-namespaces
+}
+
+kbash() {
+    if [ "$1" != "" ]; then
+            kubectl exec --stdin --tty $1 -- /bin/bash
+    else
+            echo -e "Error, please provide a pod name"
+      fi
+}
 
 # Helm commands
 alias h="helm"
@@ -42,5 +53,13 @@ hup() {
             helm upgrade $1 $2
     else
             echo -e "Error, please provide a release name and chart"
+      fi
+}
+
+hun() {
+    if [ "$1" != "" ]; then
+            helm uninstall $1
+    else
+            echo -e "Error, please provide a release name"
       fi
 }
