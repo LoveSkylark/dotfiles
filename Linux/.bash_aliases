@@ -25,6 +25,10 @@ ku() {
 }
 
 kall() {
+    kubectl get all
+}
+
+kall() {
     kubectl get all --all-namespaces
 }
 
@@ -41,18 +45,22 @@ alias h="helm"
 alias hl="helm list --all-namespaces"
 
 hin() {
-    if [ "$1" != "" ] | [ "$2" != "" ]; then
-            helm install $1 $2
-    else
-            echo -e "Error, please provide a release name and chart"
+    if [ "$1" = "" ] | [ "$2" = "" ]; then
+            echo -e "Error, please provide a release name, chart and value file"
+    elif [ "$3" = "" ]
+            helm install $1 $2 
+    else 
+            helm install $1 $2 -f $3 
       fi
 }
 
-hup() {
-    if [ "$1" != "" ] | [ "$2" != "" ]; then
-            helm upgrade $1 $2
-    else
-            echo -e "Error, please provide a release name and chart"
+hup()  {
+    if [ "$1" = "" ] | [ "$2" = "" ]; then
+            echo -e "Error, please provide a release name, chart and value file"
+    elif [ "$3" = "" ]
+            helm upgrade $1 $2 
+    else 
+            helm upgrade $1 $2 -f $3 
       fi
 }
 
