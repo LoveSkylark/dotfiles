@@ -42,7 +42,8 @@ kbash() {
 
 # Helm commands
 alias h="helm"
-alias hl="helm list --all-namespaces"
+alias hl="helm list"
+alias hall="helm list --all-namespaces"
 
 hin() {
     if [ "$1" = "" ] | [ "$2" = "" ]; then
